@@ -16,11 +16,11 @@ let future = document.querySelector (".future");
 
 //Set Current Day in Calendar:
 
-var today = moment();
+let today = moment();
 $("#currentDay").text(today.format("MMM Do, YYYY"));
 
 //Create Array with time values
-var hourPlanner = [{hour: 9, time:"9am"},
+const hourPlanner = [{hour: 9, time:"9am"},
             {hour: 10, time:"10am"},
             {hour: 11, time:"11am"},
             {hour: 12, time:"12pm"},
@@ -33,13 +33,28 @@ var hourPlanner = [{hour: 9, time:"9am"},
 
 //Create Time Row in index
 hourPlanner.forEach(currentHour => {
-    var hourRow = $("<form>").attr({
+    let hourRow = $("<form>").attr({
         "class": "row"
     });
     $(".container").append(hourRow);
-});
+
 console.log(hourPlanner);
 
+let hourBox = $("<div>")
+    .text(`${currentHour.time}`)
+    .attr({"class": "col-sm-2"});
+console.log(hourBox);
+});
+
+let textArea = $("<div>")
+.attr({"class": "col-sm-8"});
+
+let textInput = $("<textArea>");
+    hourBox.append(textInput);
+    textInput.attr(currentHour.hour);
+
+    })
+//I'm tired and it's quittin time
 
 
 
@@ -49,11 +64,11 @@ console.log(hourPlanner);
 //var highScores= JSON.parse(localStorage.getItem("highScore")) || [];
 //let scoreText = resultBox.querySelector(".score-text");
 
-function savedEvent(){
+//function savedEvent(){
 
-var finalEvent = {
-    hourPlanner.append(eventField);
-     }
+//var finalEvent = {
+//    hourPlanner.append(eventField);
+ //    }
        
 //    highScores.push(finalScore);
        
