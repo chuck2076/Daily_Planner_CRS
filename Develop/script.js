@@ -1,6 +1,6 @@
 //create global variables
 let row = document.querySelector (".row");
-let hour = document.querySelector (".hour");
+//let hour = document.querySelector (".hour");
 let saveBtn = document.querySelector (".saveBtn");
 let textArea = document.querySelector ("textArea");
 let description = document.querySelector (".description");
@@ -19,23 +19,28 @@ let future = document.querySelector (".future");
 var today = moment();
 $("#currentDay").text(today.format("MMM Do, YYYY"));
 
-//Set style using document.createElement and .row = (sm-2, sm-8, sm-2)
-//$( "#hour" ).clone().appendTo("#row");
-
-var hour = [{num = 9, time ="9am"},
-            {num = 10, time ="10am"},
-            {num = 11, time ="11am"},
-            {num = 12, time ="12pm"},
-            {num = 1, time ="1pm"},
-            {num = 2, time ="2pm"},
-            {num = 3, time ="3pm"},
-            {num = 4, time ="4pm"},
-            {num = 5, time ="5pm"},
+//Create Array with time values
+var hourPlanner = [{hour: 9, time:"9am"},
+            {hour: 10, time:"10am"},
+            {hour: 11, time:"11am"},
+            {hour: 12, time:"12pm"},
+            {hour: 13, time:"1pm"},
+            {hour: 14, time:"2pm"},
+            {hour: 15, time:"3pm"},
+            {hour: 16, time:"4pm"},
+            {hour: 17, time:"5pm"},
             ]
 
-$.map( arr, function(num, time) {
-    return (num.id);
-console.log(num);
+//Create Time Row in index
+hourPlanner.forEach(currentHour => {
+    var hourRow = $("<form>").attr({
+        "class": "row"
+    });
+    $(".container").append(hourRow);
+});
+console.log(hourPlanner);
+
+
 
 
 //Set textArea to eventListener("onClick", => it's a text box and add text)?
@@ -44,12 +49,11 @@ console.log(num);
 //var highScores= JSON.parse(localStorage.getItem("highScore")) || [];
 //let scoreText = resultBox.querySelector(".score-text");
 
-//function showResult(){
+function savedEvent(){
 
-//    var finalScore = {
- //       initials: initials, 
-//        score: userScore,
-//       }
+var finalEvent = {
+    hourPlanner.append(eventField);
+     }
        
 //    highScores.push(finalScore);
        
