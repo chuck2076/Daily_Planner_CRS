@@ -30,44 +30,65 @@ const hourPlanner = [{hour: 9, time:"9am"},
             {hour: 16, time:"4pm"},
             {hour: 17, time:"5pm"},
             ]
-let currentHour = (hourPlanner["hour"]);
-console.log(currentHour);
+//let currentHour = (hourPlanner["hour"]);
+//console.log(currentHour);
 //Create Time Row in index
 hourPlanner.forEach(currentHour => {
-    let hourRow = $("<article>").attr({
-        "class": "row"
-    });
+//    let hourRow = $("<article>").attr({
+//        "class": "row row no gutters row hover"
+//    });
+let hourRow = `<div class = "row" id=${currentHour.hour}>
+<div class = "col-2 time-block" >${currentHour.time}</div>
+<div class = "col-8 textarea hour"> <textarea></textarea></div>
+<div class="saveBtn col-2"></div> 
+</div>`
     $(".container").append(hourRow);
 
-//gitconsole.log(hourPlanner);
+
+
+
+console.log(hourRow);
+
+//<div class = "row" id=`${currHour.hour}`>
+ //<div class = col-2>${currHour.time}</div>
+ //<div class = col-8> <textarea></textarea></div>
+ //<div class="saveBtn col-2"></div> 
+//</div>
 
 //Add time to hour box area in time row
+// hourPlanner.forEach(currentHour => {
+// let hourBox = $("<div>")
+//     .text(`${currentHour.hour}`)
+//     .attr({"class": "col-sm-2 hour"});
+// console.log(hourBox);
+// });
 
-hourPlanner.forEach(currentHour => {
-let hourBox = $("<div>")
-    .text(`${currentHour.time}`)
-    .attr({"class": "col-sm-2 hour"});
-console.log(hourBox);
-});
+// hourPlanner.forEach(currHour =>{
+//     let hourBox = $("<div>")
+//     .text(`${currHour.time}`)
+//     .attr({"class": "col-sm-2 hour"});
+// console.log(hourBox);
+// });
 
-//Append text area to time row
-let textArea = $("<div>")
-.attr({"class": "col-sm-8"});
+// //Append text area to time row
+// let textArea = $("<textArea>")
+// .attr({"class": "col-sm-8 textarea"});
 
-let textInput = $("<textArea>");
-    hourBox.append(textInput);
-    textInput.attr(currentHour.hour);
+// //Create Text Input Area
+// let textInput = $("<textArea>");
+//     hourBox.append(textInput);
+//     textInput.attr("hour");
 //    localStorage.setItem("textInput", textInput); 
 
 //Create if else for colors of text box
-    if (currentHour.hour < moment()) {
-        textArea.attr({"class": "past"})
-    }else if (currentHour.hour === moment()){
-        textArea.attr({"class": "present"})
-    }else {
-        textArea.attr({"class": "future"})
-    }
-});
+
+    // if (currentHour.hour < moment()) {
+    //     textArea.attr({"class": "past"})
+    // }else if (currentHour.hour === moment()){
+    //     textArea.attr({"class": "present"})
+    // }else {
+    //     textArea.attr({"class": "future"})
+    // }
 
 //Create saveBtn
 let saveBtn =$("<button>")
@@ -77,10 +98,15 @@ $(function () {
     $("<button>").button({
             icons: { primary: "fa-solid fa-folder-plus" }
         });
-      hourRow.append(hourBox, textArea, saveBtn);  
     });
+});
 
 //Need OnClick Event here
+saveBtn.on("click", function(event){
+    event.preventDefault();
+    localStorage.setItem("hourPlanner", JSON.stringify(hourPlanner));
+});
+    //return Response.json()?
 
 
 
@@ -92,9 +118,9 @@ $(function () {
 //let scoreText = resultBox.querySelector(".score-text");
 
 //localStorage.setItem("hourPlanner", JSON.stringify(hourPlanner)); 
-function savedEvent() {
-    localStorage.setItem("hourPlanner", JSON.stringify(hourPlanner));
-} 
+//function savedEvent() {
+//    localStorage.setItem("hourPlanner", JSON.stringify(hourPlanner));
+ 
 
 function displayEvent() {
     hourPlanner.array.forEach(currentHour => {
