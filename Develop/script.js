@@ -1,8 +1,8 @@
 //create global variables
-let row = document.querySelector (".row");
+//let row = document.querySelector (".row");
 //let hour = document.querySelector (".hour");
 let saveBtn = document.querySelector (".saveBtn");
-let textArea = document.querySelector ("textArea");
+//let textArea = document.querySelector ("textArea");
 let description = document.querySelector (".description");
 let timeBlock = document.querySelector (".time-block");
 let past = document.querySelector (".past");
@@ -33,19 +33,21 @@ const hourPlanner = [{hour: 9, time:"9am"},
 
 //Create Time Row in index
 hourPlanner.forEach(currentHour => {
-    let hourRow = $("<form>").attr({
-        "class": "row"
+    let hourRow = $("<article>").attr({
+        "class": "row row no gutters row hover"
     });
     $(".container").append(hourRow);
 
 console.log(hourPlanner);
 
+//Add time to hour box area in time row
 let hourBox = $("<div>")
     .text(`${currentHour.time}`)
-    .attr({"class": "col-sm-2"});
+    .attr({"class": "col-sm-2 hour"});
 console.log(hourBox);
 });
 
+//Append text area to time row
 let textArea = $("<div>")
 .attr({"class": "col-sm-8"});
 
@@ -53,7 +55,24 @@ let textInput = $("<textArea>");
     hourBox.append(textInput);
     textInput.attr(currentHour.hour);
 
-    })
+//Create if else for colors of text box
+    if (currentHour.hour < moment()) {
+        textArea.attr({"class": "past"})
+    }else if (currentHour.hour === moment()){
+        textArea.attr({"class": "present"})
+    }else {
+        textArea.attr({"class": "future"})
+    }
+//Create saveBtn
+let saveBtn =$("<button>")
+    .attr({"class":"col-sm-2 saveBtn"})
+//Add icon
+$(function () {
+    $("<button>").button({
+            icons: { primary: "fa-solid fa-folder-plus" }
+        });
+
+    });
 //I'm tired and it's quittin time
 
 
