@@ -1,13 +1,13 @@
 //create global variables
 //let row = document.querySelector (".row");
 //let hour = document.querySelector (".hour");
-let saveBtn = document.querySelector (".saveBtn");
+//let saveBtn = document.querySelector (".saveBtn");
 //let textArea = document.querySelector ("textArea");
-let description = document.querySelector (".description");
-let timeBlock = document.querySelector (".time-block");
-let past = document.querySelector (".past");
-let present = document.querySelector (".present");
-let future = document.querySelector (".future");
+//let description = document.querySelector (".description");
+//let timeBlock = document.querySelector (".time-block");
+//let past = document.querySelector (".past");
+//let present = document.querySelector (".present");
+//let future = document.querySelector (".future");
 //let currentDay = $("#currentDay");
 
 //or $(root)?; look at in class materials
@@ -30,17 +30,20 @@ const hourPlanner = [{hour: 9, time:"9am"},
             {hour: 16, time:"4pm"},
             {hour: 17, time:"5pm"},
             ]
-
+let currentHour = (hourPlanner["hour"]);
+console.log(currentHour);
 //Create Time Row in index
 hourPlanner.forEach(currentHour => {
     let hourRow = $("<article>").attr({
-        "class": "row row no gutters row hover"
+        "class": "row"
     });
     $(".container").append(hourRow);
 
-console.log(hourPlanner);
+//gitconsole.log(hourPlanner);
 
 //Add time to hour box area in time row
+
+hourPlanner.forEach(currentHour => {
 let hourBox = $("<div>")
     .text(`${currentHour.time}`)
     .attr({"class": "col-sm-2 hour"});
@@ -54,6 +57,7 @@ let textArea = $("<div>")
 let textInput = $("<textArea>");
     hourBox.append(textInput);
     textInput.attr(currentHour.hour);
+//    localStorage.setItem("textInput", textInput); 
 
 //Create if else for colors of text box
     if (currentHour.hour < moment()) {
@@ -63,6 +67,8 @@ let textInput = $("<textArea>");
     }else {
         textArea.attr({"class": "future"})
     }
+});
+
 //Create saveBtn
 let saveBtn =$("<button>")
     .attr({"class":"col-sm-2 saveBtn"})
@@ -71,9 +77,11 @@ $(function () {
     $("<button>").button({
             icons: { primary: "fa-solid fa-folder-plus" }
         });
-
+      hourRow.append(hourBox, textArea, saveBtn);  
     });
-//I'm tired and it's quittin time
+
+//Need OnClick Event here
+
 
 
 
@@ -83,11 +91,21 @@ $(function () {
 //var highScores= JSON.parse(localStorage.getItem("highScore")) || [];
 //let scoreText = resultBox.querySelector(".score-text");
 
-//function savedEvent(){
+//localStorage.setItem("hourPlanner", JSON.stringify(hourPlanner)); 
+function savedEvent() {
+    localStorage.setItem("hourPlanner", JSON.stringify(hourPlanner));
+} 
 
-//var finalEvent = {
-//    hourPlanner.append(eventField);
- //    }
+function displayEvent() {
+    hourPlanner.array.forEach(currentHour => {
+        $(`${currentHour.time}`).val(textInput)
+    });
+    
+}
+
+//let finalEvent = JSON.parse(localStorage.getItem("textInput"))
+    
+    
        
 //    highScores.push(finalScore);
        
