@@ -34,7 +34,7 @@ const hourPlanner = [{hour: 9, time:"9am"},
 //console.log(currentHour);
 
 
-//Create Time Row in index
+//Create Time Row in index with Hour, Text Field for Reminder and Save Button
 hourPlanner.forEach(currentHour => {
 //    let hourRow = $("<article>").attr({
 //        "class": "row row no gutters row hover"
@@ -47,9 +47,9 @@ let hourRow = `<div class = "row" id=${currentHour.hour}>
     $(".container").append(hourRow);
 
 console.log(hourRow);
-//
-    var getStorage = localStorage.getItem(currentHour.hour)
 
+//Adding Text Field for Reminder to Local Storage
+    var getStorage = localStorage.getItem(currentHour.hour)
     $(".row").find(description).val(getStorage)
 
 //<div class = "row" id=`${currHour.hour}`>
@@ -84,11 +84,9 @@ console.log(hourRow);
 //    localStorage.setItem("textInput", textInput); 
 
 
-//Create saveBtn
-
 });
 
-//Need OnClick Event here
+//Create OnClick to save to local storage
 $(".saveBtn").on("click", function(event){
     event.preventDefault();
     var value = $(this).siblings(".description").val()
@@ -105,16 +103,17 @@ function savedTasks(){
     $(this).find(description).val(getStorage)
  })
 
+ //Create if else for colors of text box
+if (id < moment()) {
+     description.attr({"class":"past"})
+ }else if (id === moment()){
+    description.attr({"class":"present"})
+ }else {
+    description.attr({"class":"future"})
  }
 
- //Create if else for colors of text box
-if ("id" < 12) {
-     description.attr("past")
- }else if ("id" === 12){
-    description.attr("present")
- }else {
-    description.attr({"class": "future"})
- }
+}
+
 
 
 //savedTasks();
