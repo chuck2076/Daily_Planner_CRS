@@ -12,10 +12,10 @@
 
 //or $(root)?; look at in class materials
 
-//I think description = something to with function <h1 class="display-3">, <p class="lead"> and currentDay
+//Loading saved reminder values
+var description = $(".description")
 
 //Set Current Day in Calendar:
-
 let today = moment();
 $("#currentDay").text(today.format("MMM Do, YYYY"));
 
@@ -32,6 +32,8 @@ const hourPlanner = [{hour: 9, time:"9am"},
             ]
 //let currentHour = (hourPlanner["hour"]);
 //console.log(currentHour);
+
+
 //Create Time Row in index
 hourPlanner.forEach(currentHour => {
 //    let hourRow = $("<article>").attr({
@@ -39,15 +41,16 @@ hourPlanner.forEach(currentHour => {
 //    });
 let hourRow = `<div class = "row" id=${currentHour.hour}>
 <div class = "col-2 time-block" >${currentHour.time}</div>
-<div class = "col-8 textarea hour"> <textarea></textarea></div>
-<div class="saveBtn col-2"></div> 
+<textarea class = "col-8 hour description"></textarea>
+<button class="saveBtn col-2"><i class="fa-solid fa-folder-plus"></i></button> 
 </div>`
     $(".container").append(hourRow);
 
-
-
-
 console.log(hourRow);
+//
+    var getStorage = localStorage.getItem(currentHour.hour)
+
+    $(".row").find(description).val(getStorage)
 
 //<div class = "row" id=`${currHour.hour}`>
  //<div class = col-2>${currHour.time}</div>
@@ -80,32 +83,42 @@ console.log(hourRow);
 //     textInput.attr("hour");
 //    localStorage.setItem("textInput", textInput); 
 
-//Create if else for colors of text box
-
-    // if (currentHour.hour < moment()) {
-    //     textArea.attr({"class": "past"})
-    // }else if (currentHour.hour === moment()){
-    //     textArea.attr({"class": "present"})
-    // }else {
-    //     textArea.attr({"class": "future"})
-    // }
 
 //Create saveBtn
-let saveBtn =$("<button>")
-    .attr({"class":"col-sm-2 saveBtn"})
-//Add icon
-$(function () {
-    $("<button>").button({
-            icons: { primary: "fa-solid fa-folder-plus" }
-        });
-    });
+
 });
 
 //Need OnClick Event here
-saveBtn.on("click", function(event){
+$(".saveBtn").on("click", function(event){
     event.preventDefault();
-    localStorage.setItem("hourPlanner", JSON.stringify(hourPlanner));
+    var value = $(this).siblings(".description").val()
+    var id = $(this).parent().attr("id")
+    localStorage.setItem(id, JSON.stringify(value));
+
 });
+function savedTasks(){
+    var description = $(".description")
+ $(".row").each(() =>{
+     var id = $(this).attr("class")
+    var getStorage = localStorage.getItem(id)
+     console.log(id)
+    $(this).find(description).val(getStorage)
+ })
+
+ }
+
+ //Create if else for colors of text box
+if ("id" < 12) {
+     description.attr("past")
+ }else if ("id" === 12){
+    description.attr("present")
+ }else {
+    description.attr({"class": "future"})
+ }
+
+
+//savedTasks();
+
     //return Response.json()?
 
 
@@ -122,12 +135,12 @@ saveBtn.on("click", function(event){
 //    localStorage.setItem("hourPlanner", JSON.stringify(hourPlanner));
  
 
-function displayEvent() {
-    hourPlanner.array.forEach(currentHour => {
-        $(`${currentHour.time}`).val(textInput)
-    });
+//unction displayEvent() {
+//    hourPlanner.forEach(currentHour => {
+//        $(`${currentHour.time}`).val(textInput)
+//    });
     
-}
+//}
 
 //let finalEvent = JSON.parse(localStorage.getItem("textInput"))
     
