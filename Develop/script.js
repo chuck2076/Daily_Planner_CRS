@@ -127,7 +127,7 @@ function savedTasks(){
      var id = $(this).attr("class")
     var getStorage = JSON.parse(localStorage.getItem(id));
      console.log(id)
-    $(this).find(description).val(getStorage)
+    $(this).find(description).val(getStorage).trim()
  })
 }
 
