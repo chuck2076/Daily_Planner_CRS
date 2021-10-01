@@ -25,9 +25,9 @@ SO THAT I can manage my time effectively
 
 5) The event is saved to local storage
 
-6) Currently the users is unable to view the timeblocks as color coded indicating past, present, future
+6) The user is able to view the timeblocks as color coded indicating past, present, future
 
-7) Currently, when the page is refreshed the events are not saved to the calendar.
+7) When the page is refreshed the events are saved to the calendar
 
 8) The application uses Moment to display the current date
 

@@ -33,24 +33,49 @@ const hourPlanner = [{hour: 9, time:"9am"},
 //let currentHour = (hourPlanner["hour"]);
 //console.log(currentHour);
 
+let thisHour = moment().hour()
+console.log(thisHour)
+
+
 
 //Create Time Row in index with Hour, Text Field for Reminder and Save Button
 hourPlanner.forEach(currentHour => {
 //    let hourRow = $("<article>").attr({
 //        "class": "row row no gutters row hover"
 //    });
+
+//Pulling in Past Reminders from Local Storage
+var getStorage = localStorage.getItem(currentHour.hour)
+console.log(getStorage)
+
+//Big Ups to our TA Christian Henry for playing tiernary values with me and getting it to work
+//Loading past reminders from Local Storage
+if (getStorage !== null) {
+    let hourRow = `<div class = "row" id=${currentHour.hour}>
+<div class = "col-2 time-block" >${currentHour.time}</div>
+<textarea class = "col-8 hour description ${currentHour.hour === thisHour?"present":currentHour.hour < thisHour?"past":"future"}">${getStorage}</textarea>
+<button class="saveBtn col-2">Save</button> 
+</div>`
+$(".container").append(hourRow);
+
+} else {
+
+
+//Creating Present Values for Calendar
 let hourRow = `<div class = "row" id=${currentHour.hour}>
 <div class = "col-2 time-block" >${currentHour.time}</div>
-<textarea class = "col-8 hour description"></textarea>
-<button class="saveBtn col-2"><i class="fa-solid fa-folder-plus"></i></button> 
+<textarea class = "col-8 hour description ${currentHour.hour === thisHour?"present":currentHour.hour < thisHour?"past":"future"}"></textarea>
+<button class="saveBtn col-2">Save</button> 
 </div>`
-    $(".container").append(hourRow);
+$(".container").append(hourRow);
+}
+    //$(".container").append(hourRow);
 
-console.log(hourRow);
+//console.log(hourRow);
 
 //Adding Text Field for Reminder to Local Storage
-    var getStorage = localStorage.getItem(currentHour.hour)
-    $(".row").find(description).val(getStorage)
+    //var getStorage = localStorage.getItem(currentHour.hour)
+    //$(".row").find(description).val(getStorage)
 
 //<div class = "row" id=`${currHour.hour}`>
  //<div class = col-2>${currHour.time}</div>
@@ -94,25 +119,28 @@ $(".saveBtn").on("click", function(event){
     localStorage.setItem(id, JSON.stringify(value));
 
 });
+
+//Pulling in local storage values and assigning to Reminder area of page
 function savedTasks(){
     var description = $(".description")
  $(".row").each(() =>{
      var id = $(this).attr("class")
-    var getStorage = localStorage.getItem(id)
+    var getStorage = JSON.parse(localStorage.getItem(id));
      console.log(id)
     $(this).find(description).val(getStorage)
  })
+}
 
  //Create if else for colors of text box
-if (id < moment()) {
-     description.attr({"class":"past"})
- }else if (id === moment()){
-    description.attr({"class":"present"})
- }else {
-    description.attr({"class":"future"})
- }
-
-}
+//  var timeOfDay = Number(id);
+// if (timeOfDay < moment().hours()) {
+//      description.addClass("past")
+//  }else if (timeOfDay === moment().hours()){
+//     description.addClass("present")
+//  }else {
+//     description.addClass("future")
+//  }
+// }
 
 
 
