@@ -1,4 +1,4 @@
-# 05 Third-Party APIs: Work Day Scheduler
+# Work Day Scheduler
 
 ## My Task
 
@@ -41,6 +41,6 @@ The following screenshot demonstrates the functionality:
 
 ## Link to functioning site
 
-https://chuck2076.github.io/Homework_5_Daily_Planner_CRS/ 
+https://chuck2076.github.io/Daily_Planner_CRS/ 
 
 
